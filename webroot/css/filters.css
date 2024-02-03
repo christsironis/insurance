@@ -1,0 +1,17 @@
+
+
+#search{
+    margin: 0;
+    line-height: 1.6;
+}
+
+
+#limit{
+    float: right;
+}
+#limit input{
+    width: 60px;
+    text-align: right;
+    margin: 0;
+    margin-right: 5px;
+}
