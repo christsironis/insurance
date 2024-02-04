@@ -50,11 +50,11 @@ img {
                     <td><?= h($client->phone) ?></td>
                     <td><?= h($client->afm) ?></td>
                     <td class="actions">
-                        <?= $this->Html->image("notification.png", ['class'=>'action_icons',"alt" => "notification",'url' => ['controller'=>'Notifications','action' => 'index', $client->id]]) ?>
-                        <?= $this->Html->image("contract.png", ['class'=>'action_icons',"alt" => "info",'url' => ['controller'=>'Contracts','action' => 'index', $client->id]]) ?>
-                        <?= $this->Html->image("info.png", ['class'=>'action_icons',"alt" => "info",'url' => ['action' => 'view', $client->id]]) ?>
-                        <?= $this->Html->image("edit.png", ['class'=>'action_icons',"alt" => "Edit",'url' => ['action' => 'edit', $client->id]]) ?>
-                        <?= $this->Form->postLink($this->Html->image("delete.png", ['class'=>'action_icons',"alt" => "Delete"]), ['action' => 'delete', $client->id], ['escape'=>false,'confirm' => __('Are you sure you want to delete # {0}?', $client->id)]) ?>
+                        <?= $this->Html->image("notification.png", ["title" => "Ειδοποιητήρια",'class'=>'action_icons',"alt" => "notification",'url' => ['controller'=>'Notifications','action' => 'index', $client->id]]) ?>
+                        <?= $this->Html->image("contract.png", ["title" => "Συμβόλαια",'class'=>'action_icons',"alt" => "info",'url' => ['controller'=>'Contracts','action' => 'index', $client->id]]) ?>
+                        <?= $this->Html->image("info.png", ["title" => "Προβολή",'class'=>'action_icons',"alt" => "info",'url' => ['action' => 'view', $client->id]]) ?>
+                        <?= $this->Html->image("edit.png", ["title" => "Επεξεργασία",'class'=>'action_icons',"alt" => "Edit",'url' => ['action' => 'edit', $client->id]]) ?>
+                        <?= $this->Form->postLink($this->Html->image("delete.png", ["title" => "Διαγραφή",'class'=>'action_icons',"alt" => "Delete"]), ['action' => 'delete', $client->id], ['escape'=>false,'confirm' => __('Are you sure you want to delete # {0}?', $client->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

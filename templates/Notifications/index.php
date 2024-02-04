@@ -51,10 +51,10 @@ img {
                     <td><?= h($notification->completed ? 'Ναι' : 'Όχι') ?></td>
                     <td><?= h($notification->created) ?></td>
                     <td class="actions">
-                        <?php if(!$notification->completed) echo $this->Html->image("contract.png", ['class'=>'action_icons',"alt" => "info",'url' => ['controller'=>'Contracts','action' => 'add', $client->id, $notification->id ]]) ?>
-                        <?= $this->Html->image("info.png", ['class'=>'action_icons',"alt" => "info",'url' => ['action' => 'view', $notification->id]]) ?>
-                        <?= $this->Html->image("edit.png", ['class'=>'action_icons',"alt" => "Edit",'url' => ['action' => 'edit', $notification->id]]) ?>
-                        <?= $this->Form->postLink($this->Html->image("delete.png", ['class'=>'action_icons',"alt" => "Delete"]), ['action' => 'delete', $notification->id], ['escape'=>false,'confirm' => __('Are you sure you want to delete # {0}?', $notification->id)]) ?>
+                        <?php if(!$notification->completed) echo $this->Html->image("check.png", ['class'=>'action_icons',"alt" => "Νέο Συμβόλαιο","title" => "Νέο Συμβόλαιο",'url' => ['controller'=>'Contracts','action' => 'add', $client->id, $notification->id ]]) ?>
+                        <?= $this->Html->image("info.png", ['class'=>'action_icons',"title" => "Προβολή","alt" => "info",'url' => ['action' => 'view', $notification->id]]) ?>
+                        <?= $this->Html->image("edit.png", ['class'=>'action_icons',"title" => "Επεξεργασία","alt" => "Edit",'url' => ['action' => 'edit', $notification->id]]) ?>
+                        <?= $this->Form->postLink($this->Html->image("delete.png", ["title" => "Διαγραφή",'class'=>'action_icons',"alt" => "Delete"]), ['action' => 'delete', $notification->id], ['escape'=>false,'confirm' => __('Are you sure you want to delete # {0}?', $notification->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
