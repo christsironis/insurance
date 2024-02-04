@@ -49,8 +49,8 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
-        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'el_GR'),
+        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Europe/Athens'),
         'base' => false,
         'dir' => 'src',
         'webroot' => 'webroot',
@@ -294,7 +294,7 @@ return [
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [],
+            'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'],
             'cacheMetadata' => true,
             'log' => false,
 

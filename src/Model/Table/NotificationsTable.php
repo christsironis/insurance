@@ -98,7 +98,7 @@ class NotificationsTable extends Table
 
         $validator
             ->date('exp_date')
-            ->allowEmptyDate('exp_date');
+            ->notEmptyDate('exp_date');
 
         return $validator;
     }

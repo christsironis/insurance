@@ -18,7 +18,7 @@
                     // echo $this->Form->control('email',['type'=>'checkbox']);
                     echo $this->Form->control('name');
                     echo $this->Form->control('file',['type'=>'file']);
-                    echo $this->Form->control('exp_date', ['empty' => true]);
+                    echo $this->Form->control('exp_date', ['empty' => true,'required']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

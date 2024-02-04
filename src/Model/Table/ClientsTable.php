@@ -50,9 +50,11 @@ class ClientsTable extends Table
 
         $this->hasMany('Contracts', [
             'foreignKey' => 'client_id',
+            'dependent'=>true
         ]);
         $this->hasMany('Notifications', [
             'foreignKey' => 'client_id',
+            'dependent'=>true
         ]);
     }
 
