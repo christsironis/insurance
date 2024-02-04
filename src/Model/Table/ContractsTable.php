@@ -51,6 +51,9 @@ class ContractsTable extends Table
             'foreignKey' => 'client_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('Notifications', [
+            'foreignKey' => 'notification_id',
+        ]);
     }
 
     /**
@@ -66,10 +69,18 @@ class ContractsTable extends Table
             ->notEmptyString('client_id');
 
         $validator
+            ->integer('notification_id')
+            ->allowEmptyString('notification_id');
+
+        $validator
             ->scalar('file')
             ->maxLength('file', 255)
             ->requirePresence('file', 'create')
             ->notEmptyFile('file');
+
+        $validator
+            ->date('exp_date')
+            ->allowEmptyDate('exp_date');
 
         return $validator;
     }
@@ -84,6 +95,7 @@ class ContractsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['client_id'], 'Clients'), ['errorField' => 'client_id']);
+        $rules->add($rules->existsIn(['notification_id'], 'Notifications'), ['errorField' => 'notification_id']);
 
         return $rules;
     }

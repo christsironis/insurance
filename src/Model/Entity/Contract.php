@@ -10,7 +10,10 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $client_id
+ * @property int|null $notification_id
+ * @property string|null $name
  * @property string $file
+ * @property \Cake\I18n\Date|null $exp_date
  * @property \Cake\I18n\DateTime|null $created
  *
  * @property \App\Model\Entity\Client $client
@@ -28,7 +31,9 @@ class Contract extends Entity
      */
     protected array $_accessible = [
         'client_id' => true,
+        'notification_id' => true,
         'file' => true,
+        'exp_date' => true,
         'created' => true,
         'client' => true,
     ];

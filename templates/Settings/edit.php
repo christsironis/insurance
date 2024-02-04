@@ -19,7 +19,7 @@
                 <legend><?= __('Edit Setting') ?></legend>
                 <?php
                     echo $this->Form->control('name',['disabled']);
-                    echo $this->Form->control('value');
+                    echo $this->Form->control('value',['type'=>'textarea']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

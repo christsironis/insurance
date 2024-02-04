@@ -21,8 +21,9 @@ class CronsFixture extends TestFixture
             [
                 'id' => 1,
                 'notification_id' => 1,
-                'execute_date' => '2024-02-03 09:07:42',
-                'created' => '2024-02-03 09:07:42',
+                'execute_date' => '2024-02-03 20:57:13',
+                'completed' => 1,
+                'created' => '2024-02-03 20:57:13',
             ],
         ];
         parent::init();

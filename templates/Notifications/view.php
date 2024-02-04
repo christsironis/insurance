@@ -16,7 +16,7 @@
     </aside>
     <div class="column column-80">
         <div class="notifications view content">
-            <h3><?= h($notification->file) ?></h3>
+            <h3><?= h($notification->name) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Client') ?></th>
@@ -57,24 +57,15 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Notification Id') ?></th>
                             <th><?= __('Execute Date') ?></th>
                             <th><?= __('Created') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th><?= __('Ειδοποιήθηκε') ?></th>
                         </tr>
                         <?php foreach ($notification->crons as $crons) : ?>
                         <tr>
-                            <td><?= h($crons->id) ?></td>
-                            <td><?= h($crons->notification_id) ?></td>
                             <td><?= h($crons->execute_date) ?></td>
                             <td><?= h($crons->created) ?></td>
                             <td><?= h($crons->completed ? 'Ναί' : 'Όχι') ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Crons', 'action' => 'view', $crons->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Crons', 'action' => 'edit', $crons->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Crons', 'action' => 'delete', $crons->id], ['confirm' => __('Are you sure you want to delete # {0}?', $crons->id)]) ?>
-                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

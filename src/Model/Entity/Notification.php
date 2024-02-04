@@ -10,9 +10,11 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $client_id
+ * @property string|null $name
  * @property int $sms
  * @property int $email
  * @property string $file
+ * @property int $completed
  * @property \Cake\I18n\Date|null $exp_date
  * @property \Cake\I18n\DateTime|null $created
  *
@@ -32,9 +34,11 @@ class Notification extends Entity
      */
     protected array $_accessible = [
         'client_id' => true,
+        'name' => true,
         'sms' => true,
         'email' => true,
         'file' => true,
+        'completed' => true,
         'exp_date' => true,
         'created' => true,
         'client' => true,

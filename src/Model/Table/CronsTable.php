@@ -70,6 +70,10 @@ class CronsTable extends Table
             ->requirePresence('execute_date', 'create')
             ->notEmptyDateTime('execute_date');
 
+        $validator
+            ->integer('completed')
+            ->notEmptyString('completed');
+
         return $validator;
     }
 

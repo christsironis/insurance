@@ -20,9 +20,10 @@ class SettingsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
+                'code' => 'Lorem ipsum dolor sit amet',
                 'name' => 'Lorem ipsum dolor sit amet',
                 'value' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-02-03 09:07:51',
+                'created' => '2024-02-03 20:57:13',
             ],
         ];
         parent::init();

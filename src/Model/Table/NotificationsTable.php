@@ -52,7 +52,11 @@ class NotificationsTable extends Table
             'foreignKey' => 'client_id',
             'joinType' => 'INNER',
         ]);
+        $this->hasMany('Contracts', [
+            'foreignKey' => 'notification_id',
+        ]);
         $this->hasMany('Crons', [
+            'dependent'=>true,
             'foreignKey' => 'notification_id',
         ]);
     }
@@ -70,6 +74,11 @@ class NotificationsTable extends Table
             ->notEmptyString('client_id');
 
         $validator
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->allowEmptyString('name');
+
+        $validator
             ->integer('sms')
             ->allowEmptyString('sms');
 
@@ -82,6 +91,10 @@ class NotificationsTable extends Table
             ->maxLength('file', 255)
             ->requirePresence('file', 'create')
             ->notEmptyFile('file');
+
+        $validator
+            ->integer('completed')
+            ->notEmptyString('completed');
 
         $validator
             ->date('exp_date')

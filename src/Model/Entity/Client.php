@@ -13,7 +13,6 @@ use Cake\ORM\Entity;
  * @property string|null $lastname
  * @property string $email
  * @property string|null $phone
- * @property string $password
  * @property string|null $afm
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
@@ -37,20 +36,10 @@ class Client extends Entity
         'lastname' => true,
         'email' => true,
         'phone' => true,
-        'password' => true,
         'afm' => true,
         'created' => true,
         'modified' => true,
         'contracts' => true,
         'notifications' => true,
-    ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array<string>
-     */
-    protected array $_hidden = [
-        'password',
     ];
 }

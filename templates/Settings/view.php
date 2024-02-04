@@ -23,6 +23,10 @@
                     <td><?= h($setting->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Code') ?></th>
+                    <td><?= h($setting->code) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Value') ?></th>
                     <td><?= h($setting->value) ?></td>
                 </tr>

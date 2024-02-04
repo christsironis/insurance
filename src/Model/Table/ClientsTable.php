@@ -85,12 +85,6 @@ class ClientsTable extends Table
             ->allowEmptyString('phone');
 
         $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
-
-        $validator
             ->scalar('afm')
             ->maxLength('afm', 255)
             ->allowEmptyString('afm');

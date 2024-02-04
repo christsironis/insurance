@@ -21,8 +21,11 @@ class ContractsFixture extends TestFixture
             [
                 'id' => 1,
                 'client_id' => 1,
+                'notification_id' => 1,
+                'name' => 'Lorem ipsum dolor sit amet',
                 'file' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-02-03 09:07:12',
+                'exp_date' => '2024-02-03',
+                'created' => '2024-02-03 20:57:13',
             ],
         ];
         parent::init();

@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $notification_id
  * @property \Cake\I18n\DateTime $execute_date
+ * @property int $completed
  * @property \Cake\I18n\DateTime|null $created
  *
  * @property \App\Model\Entity\Notification $notification
@@ -29,6 +30,7 @@ class Cron extends Entity
     protected array $_accessible = [
         'notification_id' => true,
         'execute_date' => true,
+        'completed' => true,
         'created' => true,
         'notification' => true,
     ];

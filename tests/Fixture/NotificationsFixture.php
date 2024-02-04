@@ -21,11 +21,13 @@ class NotificationsFixture extends TestFixture
             [
                 'id' => 1,
                 'client_id' => 1,
+                'name' => 'Lorem ipsum dolor sit amet',
                 'sms' => 1,
                 'email' => 1,
                 'file' => 'Lorem ipsum dolor sit amet',
-                'exp_date' => '2024-02-02',
-                'created' => '2024-02-02 19:04:00',
+                'completed' => 1,
+                'exp_date' => '2024-02-03',
+                'created' => '2024-02-03 20:57:13',
             ],
         ];
         parent::init();

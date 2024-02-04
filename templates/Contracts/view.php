@@ -16,7 +16,7 @@
     </aside>
     <div class="column column-80">
         <div class="contracts view content">
-            <h3><?= h($contract->file) ?></h3>
+            <h3><?= h($contract->notification->name) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Client') ?></th>
@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th><?= __('File') ?></th>
-                    <td><?= h($contract->file) ?></td>
+                    <td><?= $this->Html->link(basename($contract->file), '/webroot/contracts/'.basename($contract->file),['download'=>basename($contract->file)])?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

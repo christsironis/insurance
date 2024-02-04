@@ -18,7 +18,8 @@
                 <legend><?= __('Add Setting') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('value');
+                    echo $this->Form->control('code');
+                    echo $this->Form->control('value',['type'=>'textarea']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

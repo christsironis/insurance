@@ -26,7 +26,7 @@ CREATE TABLE clients (
 CREATE TABLE notifications(
     id INT AUTO_INCREMENT,
     client_id int not null,
-    slug VARCHAR(255) NULL,
+    name VARCHAR(255) NULL,
     sms int not null default 0,
     email int not null default 0,
     file VARCHAR(255) NOT NULL,
@@ -40,10 +40,12 @@ CREATE TABLE notifications(
 CREATE TABLE contracts(
     id INT AUTO_INCREMENT,
     client_id int not null,
-    slug VARCHAR(255) NULL,
+    notification_id int null,
     file VARCHAR(255) NOT NULL,
     exp_date DATE,
     created DATETIME,
+    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (notification_id) REFERENCES notifications(id),
     PRIMARY KEY (id)
 );
 

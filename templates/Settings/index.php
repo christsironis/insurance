@@ -14,7 +14,7 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('value') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"></th>
                 </tr>
             </thead>
             <tbody>

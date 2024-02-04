@@ -11,6 +11,7 @@ td.actions {
     flex-wrap: wrap;
     gap: 10px;
     align-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 td.actions > a:not(.approve){
@@ -37,7 +38,7 @@ img {
                     <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('phone','Κινητό') ?></th>
                     <th><?= $this->Paginator->sort('afm','ΑΦΜ') ?></th>
-                    <th class="actions"><?= __('Ενέργειες') ?></th>
+                    <th class="actions"></th>
                 </tr>
             </thead>
             <tbody>

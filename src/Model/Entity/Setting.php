@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * Setting Entity
  *
  * @property int $id
+ * @property string|null $code
  * @property string $name
  * @property string $value
  * @property \Cake\I18n\DateTime|null $created
@@ -25,6 +26,7 @@ class Setting extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'code' => true,
         'name' => true,
         'value' => true,
         'created' => true,

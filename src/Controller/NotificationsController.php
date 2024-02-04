@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Utility\Crons;
+
 /**
  * Notifications Controller
  *
@@ -10,6 +12,12 @@ namespace App\Controller;
  */
 class NotificationsController extends AppController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Crons');
+    }
+
     /**
      * Index method
      *
@@ -54,6 +62,9 @@ class NotificationsController extends AppController
             $file = $this->request->getData('file');
             $name = $file->getClientFilename();
 
+            $tableSettings = $this->fetchTable('Settings');
+            $gap = $tableSettings->find()->where(['code'=>'gap'])->first()->value;
+
             $targetPath = WWW_ROOT. 'notifications'. DS. $name;
 
             $file->moveTo($targetPath); 
@@ -63,7 +74,11 @@ class NotificationsController extends AppController
             if ($this->Notifications->save($notification)) {
                 $this->Flash->success(__('The notification has been saved.'));
 
-                return $this->redirect(['controller'=>'clients','action' => 'index']);
+                $cronUtility = new Crons();
+                $dates = $cronUtility->generateDates( date('Y-m-d'), $notification->exp_date->format('Y-m-d'), $gap);
+                $cronUtility->createCrons($notification->id,$dates);
+
+                return $this->redirect(['controller'=>'Notifications','action'=>'index',$notification->client_id]);
             }
             $this->Flash->error(__('The notification could not be saved. Please, try again.'));
         }
@@ -85,6 +100,14 @@ class NotificationsController extends AppController
             $notification = $this->Notifications->patchEntity($notification, $this->request->getData());
             if ($this->Notifications->save($notification)) {
                 $this->Flash->success(__('The notification has been saved.'));
+
+                $tableSettings = $this->fetchTable('Settings');
+                $gap = $tableSettings->find()->where(['code'=>'gap'])->first()->value;
+
+                $cronUtility = new Crons();
+                $cronUtility->deleteCrons($notification->id);
+                $dates = $cronUtility->generateDates(date('Y-m-d'),$notification->exp_date->format('Y-m-d'),$gap);
+                $cronUtility->createCrons($notification->id,$dates);
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -111,6 +134,6 @@ class NotificationsController extends AppController
             $this->Flash->error(__('The notification could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->request->referer());
     }
 }

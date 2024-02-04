@@ -13,7 +13,8 @@
             <fieldset>
                 <legend><?= __('Add Contract') ?></legend>
                 <?php
-                    echo $this->Form->input('client_id', ['value' => $id,'hidden']);
+                    echo $this->Form->input('client_id', ['value' => $client_id,'hidden']);
+                    echo $this->Form->input('notification_id', ['value' => $notification_id,'hidden']);
                     echo $this->Form->control('file',['type'=>'file']);
 
                 ?>

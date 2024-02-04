@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Utility\Crons;
+
 /**
  * Contracts Controller
  *
@@ -10,6 +12,7 @@ namespace App\Controller;
  */
 class ContractsController extends AppController
 {
+
     /**
      * Index method
      *
@@ -20,7 +23,7 @@ class ContractsController extends AppController
         $client = $this->Contracts->Clients->get($client_id);
 
         $query = $this->Contracts->find()
-            ->contain(['Clients'])->where(['client_id'=>$client_id]);
+            ->contain(['Clients','Notifications'])->where(['Contracts.client_id'=>$client_id]);
 
         $contracts = $this->paginate($query);
 
@@ -36,7 +39,7 @@ class ContractsController extends AppController
      */
     public function view($id = null)
     {
-        $contract = $this->Contracts->get($id, contain: ['Clients']);
+        $contract = $this->Contracts->get($id, ['contain'=> ['Clients','Notifications']]);
         $this->set(compact('contract'));
     }
 
@@ -45,7 +48,7 @@ class ContractsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add($id)
+    public function add($client_id,$notification_id)
     {
         $contract = $this->Contracts->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -63,13 +66,25 @@ class ContractsController extends AppController
             if ($this->Contracts->save($contract)) {
                 $this->Flash->success(__('The contract has been saved.'));
 
+                // delete remaining uncompleted crons
+                $cronUtility = new Crons();
+                $cronUtility->deleteCrons($contract->notification_id);
+
+                // complete notification
+                $notification = $this->Contracts->Notifications->get($contract->notification_id);
+                $notification = $this->Contracts->Notifications->patchEntity($notification, ['completed'=>1]);
+                $this->Contracts->Notifications->save($notification);
+
+                // send email
+                $cronUtility->sendEmail($client_id,$contract->file,'contract');
+
                 return $this->redirect(['controller'=>'clients','action' => 'index']);
 
             }
             $this->Flash->error(__('The contract could not be saved. Please, try again.'));
         }
         $clients = $this->Contracts->Clients->find('list', limit: 200)->all();
-        $this->set(compact('contract', 'clients','id'));
+        $this->set(compact('contract', 'clients','notification_id','client_id'));
     }
 
     /**
